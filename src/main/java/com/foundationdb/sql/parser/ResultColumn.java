@@ -74,9 +74,6 @@ public class ResultColumn extends ValueNode
     private String tableName;
     private ValueNode expression;
     private boolean defaultColumn;
-    
-    //tells us whether the alias name is provided with the query getting parsed
-    private String aliasName;
 
     // tells us if this ResultColumn represents an autoincrement column in a
     // base table.
@@ -89,13 +86,16 @@ public class ResultColumn extends ValueNode
 
     private boolean isNameGenerated;
     
-    public String getAliasName(){
-       return this.aliasName;
-    }
+    // tells us whether the user provided the alias names along with the query or 
+    // it is internally assigning the column name as the alias name by default.
+    // If the value is true then the user has provided the alias name 
+    // along with the query.
+    private boolean havingAlias;
     
-    public void setAliasName(String alias){
-       this.aliasName = alias;
+    public boolean isHavingAlias(){
+       return this.havingAlias;
     }
+
 
     /**
      * Different types of initializer parameters indicate different
@@ -140,7 +140,11 @@ public class ResultColumn extends ValueNode
         if ((arg1 instanceof String) || (arg1 == null)) {
             this.name = (String)arg1;
             this.exposedName = this.name;
-            this.aliasName = (String)arg1;
+            if(null==arg1 || (String)arg1.equals("")){
+               this.havingAlias = false;
+            }else{
+               this.havingAlias = true;
+            }
             setExpression((ValueNode)arg2);
         }
         else if (arg1 instanceof ColumnReference) {
