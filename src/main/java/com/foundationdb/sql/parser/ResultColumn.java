@@ -311,8 +311,10 @@ public class ResultColumn extends ValueNode
     public void setName(String name) {
         if (this.name == null) {
             this.name = name;
+            this.havingAlias = false;
         }
         else {
+           this.havingAlias = true;
             assert (reference == null || name.equals(reference.getColumnName())) : 
                 "don't change name from reference name";
         }
