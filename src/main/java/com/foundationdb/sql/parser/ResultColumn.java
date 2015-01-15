@@ -140,7 +140,7 @@ public class ResultColumn extends ValueNode
         if ((arg1 instanceof String) || (arg1 == null)) {
             this.name = (String)arg1;
             this.exposedName = this.name;
-            if(null==arg1 || (String)arg1.equals("")){
+            if(null==arg1 || ((String)arg1).equals("")){
                this.havingAlias = false;
             }else{
                this.havingAlias = true;
