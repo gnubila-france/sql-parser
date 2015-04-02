@@ -33,6 +33,19 @@
         <connection>scm:git:git@github.com:foundationdb/sql-parser.git</connection>
     </scm>
 
+    <distributionManagement>
+      <repository>
+        <id>maatg-fr-releases</id>
+        <name>maatG France Releases Repository</name>
+        <url>http://nexus.maatg.fr/content/repositories/maatg-fr-releases</url>
+      </repository>
+      <snapshotRepository>
+        <id>maatg-fr-snapshots</id>
+        <name>maatG France Snapshots Repository</name>
+        <url>http://nexus.maatg.fr/content/repositories/maatg-fr-snapshots</url>
+      </snapshotRepository>
+    </distributionManagement>
+
     <organization>
         <name>FoundationDB, LLC</name>
         <url>http://www.foundationdb.com</url>
